@@ -2,6 +2,7 @@ import eel
 import colorama
 import init
 import save_doc
+import out
 
 colorama.init()
 eel.init("web")
@@ -11,35 +12,83 @@ def get_text(theme, name, group, colledge):
         t = open('tngc.txt', 'w')
         t.write(theme + '\n' + name + '\n' + group + '\n' + colledge)
         t.close()
+        
+        inf = 'connect!'
+        out.line(inf)
+        eel.say(inf)
 
         main()
 
-        eel.say('connect!')
+        
 
 def main():
         tngc = init.read_files()
-        print(tngc)
-        eel.say('topic request...')
-        theme = init.get_theme(tngc)
-        print(theme)
-        eel.say('plan formation...')
-        pstr = init.plan_formation(theme)
-        print(pstr)
-        eel.say('plan normalisation...')
-        plan = init.plan_normalisation(pstr)
-        print(plan)
-        eel.say('item processing...')
-        l = len(plan)
-        data_list = []
-        i=1
-        for item in plan:
-                data_item = init.item_process(item, theme)
-                data_list.append(data_item)
-                print(data_item)
-                i=i+1
-                eel.say('item processing... data item: ' + str(i) + ' / ' + str(l))
-        eel.say('creating docx file...')
-        save_doc.create_file_doc(tngc, plan, data_list)
-        eel.say('continue!')
+        # print(tngc)
+        inf = 'topic request...'
+        out.line(inf)
+        eel.say(inf)
+        try:
+                theme = init.get_theme(tngc)
+                # print(theme)
+        except:
+                inf = 'ERROR: topic not found'
+                out.line(inf)
+                eel.say(inf)
+        inf = 'plan formation...'
+        out.line(inf)
+        eel.say(inf)
+        try:
+                pstr = init.plan_formation(theme)
+                # print(pstr)
+        except:
+                inf = 'ERROR: the plan could not be formed'
+                out.line(inf)
+                eel.say(inf)
+        inf = 'plan normalisation...'
+        out.line(inf)
+        eel.say(inf)
+        try:
+                plan = init.plan_normalisation(pstr)
+                # print(plan)
+        except:
+                inf = 'ERROR: the plan could not be normalized'
+                out.line(inf)
+                eel.say(inf)
+        inf = 'item processing...'
+        out.line(inf)
+        eel.say(inf)
+        try:
+                l = len(plan)
+                data_list = []
+                i=1
+                for item in plan:
+                        try:
+                                data_item = init.item_process(item, theme)
+                                data_list.append(data_item)
+                                # print(data_item)
+                                inf = 'item processing... data item: ' + str(i) + ' / ' + str(l)
+                                out.line(inf)
+                                eel.say(inf)
+                        except:
+                                inf = 'ERROR: Nonefailed to generate item #' + str(i)
+                                out.line(inf)
+                                eel.say(inf)
+                        i=i+1
+        except:
+                inf = 'ERROR: None'
+                out.line(inf)
+                eel.say(inf)
+        inf = 'creating docx file...'
+        out.line(inf)
+        eel.say(inf)
+        try:
+                save_doc.create_file_doc(tngc, plan, data_list)
+                inf = 'continue!'
+                out.line(inf)
+                eel.say(inf)
+        except:
+                inf = 'ERROR: failed to generate document'
+                out.line(inf)
+                eel.say(inf)
 
 eel.start("main.html", size=(700, 700))

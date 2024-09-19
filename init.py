@@ -1,5 +1,6 @@
 from g4f.client import Client
 import re
+import out
 
 def ask(prompt:str)->str:
     client = Client()
@@ -11,9 +12,9 @@ def ask(prompt:str)->str:
     return r
 
 def read_files()->list:
-    t = open('tngc.txt', 'r')
-    tngc = [line.strip() for line in t]
-    t.close()
+    tn = open('tngc.txt', 'r')
+    tngc = [line.strip() for line in tn]
+    tn.close()
     return tngc
 
 def get_theme(tngc:list)->str:
@@ -33,7 +34,7 @@ def plan_normalisation(pstr:str)->list:
         del plan[10:100]
         plan.remove('')
     except:
-        print('Ошибка удаления')
+        out.line('ERROR: cannot remove empty lines')
     return plan
 
 def item_process(item:str, theme:str)->str:
