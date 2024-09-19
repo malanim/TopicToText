@@ -22,7 +22,7 @@ body {
 .container {
   display: grid;
   grid-template-columns: auto 30em auto;
-  grid-template-rows: 1em auto 1em;
+  grid-template-rows: 1em auto auto;
   column-gap: 10px;
   row-gap: 1em;
 }
