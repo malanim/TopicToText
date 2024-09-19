@@ -9,3 +9,24 @@
 .justify {
   text-align: justify;
 }
+
+body {
+  background: rgb(211,255,250);
+  background: -moz-linear-gradient(137deg, rgba(211,255,250,1) 0%, rgba(110,112,255,1) 42%, rgba(132,255,237,1) 100%);
+  background: -webkit-linear-gradient(137deg, rgba(211,255,250,1) 0%, rgba(110,112,255,1) 42%, rgba(132,255,237,1) 100%);
+  background: linear-gradient(137deg, rgba(211,255,250,1) 0%, rgba(110,112,255,1) 42%, rgba(132,255,237,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d3fffa",endColorstr="#84ffed",GradientType=1);
+  color: white;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto 30em auto;
+  grid-template-rows: 1em auto 1em;
+  column-gap: 10px;
+  row-gap: 1em;
+}
+
+.box {
+  background-color: rgba(38, 43, 66, 0.514);
+}

@@ -8,17 +8,13 @@ eel.init("web")
 
 @eel.expose
 def get_text(theme, name, group, colledge):
-
-        # print('theme: ' + theme + '\nname: ' + name + '\ngroup: ' + group + '\ncolledge: ' + colledge)
         t = open('tngc.txt', 'w')
         t.write(theme + '\n' + name + '\n' + group + '\n' + colledge)
         t.close()
 
-        # Запуск основной программы
-        # os.system('python init.py')
         main()
 
-        eel.say('continue!')   # Call a Javascript function
+        eel.say('connect!')
 
 def main():
         tngc = init.read_files()
