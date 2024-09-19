@@ -34,7 +34,7 @@ def plan_normalisation(pstr:str)->list:
         del plan[10:100]
         plan.remove('')
     except:
-        out.line('ERROR: cannot remove empty lines')
+        out.line('cannot remove empty lines', 'error')
     return plan
 
 def item_process(item:str, theme:str)->str:
