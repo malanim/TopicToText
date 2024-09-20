@@ -6,15 +6,15 @@ def line(arg:str, parameter:str):
                 ir.close()
         except:
                 number = 100
-                print(str(number) + ' |ttt| ERROR: configuration file not found')
+                print(str(number) + ' |ttd| ERROR: configuration file not found')
         if (parameter=='info'):
                 perinf = 'INFO'
         elif (parameter=='error'):
                 perinf = 'ERROR'
         else:
                 perinf = 'INFO'
-                print(str(number) + ' |ttt| ERROR: configuration parameter passed incorrectly')
-        inf = str(number) + ' |ttt| ' + perinf + ': '
+                print(str(number) + ' |ttd| ERROR: configuration parameter passed incorrectly')
+        inf = str(number) + ' |ttd| ' + perinf + ': '
         print(inf + str(arg))
         iw = open('inf.txt', 'w')
         number = number + 1

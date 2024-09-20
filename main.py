@@ -17,9 +17,9 @@ def get_text(theme, name, group, colledge):
         out.line(inf, 'info')
         eel.say(inf)
 
-        main()
-
-        
+        exit_code = main()
+        info = 'the function has completed its work'
+        out.line(info + ' | exit code: ' + str(exit_code), 'info')
 
 def main():
         tngc = init.read_files()
@@ -34,6 +34,7 @@ def main():
                 inf = 'topic not found'
                 out.line(inf, 'error')
                 eel.say(inf)
+                return 1
         inf = 'plan formation...'
         out.line(inf, 'info')
         eel.say(inf)
@@ -44,6 +45,7 @@ def main():
                 inf = 'the plan could not be formed'
                 out.line(inf, 'error')
                 eel.say(inf)
+                return 2
         inf = 'plan normalisation...'
         out.line(inf, 'info')
         eel.say(inf)
@@ -54,6 +56,7 @@ def main():
                 inf = 'the plan could not be normalized'
                 out.line(inf, 'error')
                 eel.say(inf)
+                return 3
         inf = 'item processing...'
         out.line(inf, 'info')
         eel.say(inf)
@@ -73,11 +76,13 @@ def main():
                                 inf = 'nonefailed to generate item #' + str(i)
                                 out.line(inf, 'error')
                                 eel.say(inf)
+                                return 5
                         i=i+1
         except:
                 inf = 'None'
                 out.line(inf, 'error')
                 eel.say(inf)
+                return 4
         inf = 'creating docx file...'
         out.line(inf, 'info')
         eel.say(inf)
@@ -90,5 +95,6 @@ def main():
                 inf = 'failed to generate document'
                 out.line(inf, 'error')
                 eel.say(inf)
+                return 0
 
 eel.start("main.html", size=(700, 700))
