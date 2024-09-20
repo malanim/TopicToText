@@ -41,3 +41,8 @@ def item_process(item:str, theme:str)->str:
     data_item = ask('Помоги написать '+ item + ', связанное с темой: ' + theme + '; хочу получить только текст длиной от 100 до 1000 символов')
     data_item_normal = re.sub('[^А-Яа-я \n:,.]', '', data_item)
     return data_item_normal
+
+def item_updating(item:str)->str:
+    data_item_update = ask('Исправь ошибки среди текста, если они есть, и представь информацию более понятно или развернуто: "' + item + '"; хочу получить только получившийся текст')
+    data_item_normal = re.sub('[^А-Яа-я \n:;,.]', '', data_item_update)
+    return data_item_normal

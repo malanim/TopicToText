@@ -79,10 +79,15 @@ def main():
                         for item in plan:
                                 try:
                                         data_item = init.item_process(item, theme)
-                                        data_list.append(data_item)
+                                        inf = 'data item #' + str(i) + 'updating..'
+                                        eelinf = 'item processing... data item #' + str(i) + ' updating..'
+                                        out.line(inf, 'info')
+                                        eel.say(eelinf)
+                                        data_item_update = init.item_updating(data_item)
+                                        data_list.append(data_item_update)
                                         # print(data_item)
-                                        inf = 'data item: ' + str(i) + ' / ' + str(l)
-                                        eelinf = 'item processing... data item: ' + str(i) + ' / ' + str(l)
+                                        inf = 'data item continue: ' + str(i) + ' / ' + str(l)
+                                        eelinf = 'item processing... data item continue: ' + str(i) + ' / ' + str(l)
                                         out.line(inf, 'info')
                                         eel.say(eelinf)
                                 except:
