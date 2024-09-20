@@ -31,7 +31,7 @@ def plan_normalisation(pstr:str)->list:
     npstr = npstr.replace(' ', '', 1)
     plan = npstr.split('\n')
     try:
-        del plan[10:100]
+        del plan[10:]
         plan.remove('')
     except:
         out.line('cannot remove empty lines', 'error')
