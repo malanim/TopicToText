@@ -12,9 +12,9 @@ $(function(){
 
         eel.get_text($("#theme").val(), $("#name").val(), $("#group").val(), $("#colledge").val());
         $('#theme').val('');
-        $('#name').val('');
-        $('#group').val('');
-        $('#colledge').val('');
+        // $('#name').val('');
+        // $('#group').val('');
+        // $('#colledge').val('');
 
         // $('#status').val('Successfully!');
 

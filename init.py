@@ -8,8 +8,8 @@ def ask(prompt:str)->str:
         model="gpt-4-turbo",
         messages=[{"role": "user", "content": prompt}]
     )
-    r = response.choices[0].message.content
-    return r
+    text = response.choices[0].message.content
+    return text
 
 def read_files()->list:
     tn = open('tngc.txt', 'r')
