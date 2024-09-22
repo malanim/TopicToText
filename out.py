@@ -1,3 +1,4 @@
+name_program = 'TopicToText'
 def line(arg:str, parameter:str):
         try:
                 ir = open('inf.txt', 'r')
@@ -6,15 +7,15 @@ def line(arg:str, parameter:str):
                 ir.close()
         except:
                 number = 100
-                print(str(number) + ' |ttt| ERROR: configuration file not found')
+                print(str(number) + ' | ' + name_program + ' | ERROR: configuration file not found')
         if (parameter=='info'):
                 perinf = 'INFO'
         elif (parameter=='error'):
                 perinf = 'ERROR'
         else:
-                perinf = 'INFO'
-                print(str(number) + ' |ttt| ERROR: configuration parameter passed incorrectly')
-        inf = str(number) + ' |ttt| ' + perinf + ': '
+                perinf = 'UNKNOWN'
+                print(str(number) + ' | ' + name_program + ' | UNKNOWN: configuration parameter passed incorrectly')
+        inf = str(number) + ' | ' + name_program + ' | ' + perinf + ': '
         print(inf + str(arg))
         iw = open('inf.txt', 'w')
         number = number + 1
