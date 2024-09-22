@@ -187,7 +187,7 @@ def create_file_doc(tngc:list, plan:list, data:list):
 			doc.paragraphs[l-1].runs[0].add_break()
 
 		# Год по центру
-		paragraph = doc.add_paragraph(str(year), 'г.')
+		paragraph = doc.add_paragraph(str(year) + 'г.')
 		p_fmt = paragraph.paragraph_format
 		p_fmt.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
@@ -198,3 +198,8 @@ def create_file_doc(tngc:list, plan:list, data:list):
 		doc = basic_theory(doc, plan, data)
 
 		doc.save('output.docx')
+
+# tngc = ['Тема', 'Имя', 'Группа', 'Колледж']
+# plan = ['Первый пункт', 'Второй пункт', 'Трейтий пункт']
+# data = ['Первое описание', 'Второе описание', 'Третье описание']
+# create_file_doc(tngc, plan, data)
