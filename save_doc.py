@@ -122,7 +122,7 @@ def create_file_doc(tngc:list, plan:list, data:list):
 		search_theme = '{{theme}}'
 		search_name = '{{name}}'
 		search_group = '{{group}}'
-		search_colledge = '{{colledge}}'
+		search_colledge = '{{college}}'
 
 		s_year = '{{year}}'
 
