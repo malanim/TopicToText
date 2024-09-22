@@ -56,6 +56,7 @@ def main():
                         out.line(inf, 'error')
                         eel.say(inf)
                         exit_code = 2
+                        eel.alert_msg('Ошибка генерации текста.\nПроверьте свое подключение к интернету.')
                         # return exit_code
                 inf = 'plan normalisation...'
                 out.line(inf, 'info')

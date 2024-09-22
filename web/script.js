@@ -1,8 +1,13 @@
 $(function(){
 
     eel.expose(say);               // Expose this function to Python
-    function say(x) {
-        $('#status').val(x);
+    function say(text) {
+        $('#status').val(text);
+    }
+
+    eel.expose(alert_msg);
+    function alert_msg(text) {
+        alert(text)
     }
     // say_hello_js("Javascript World!");
 

@@ -8,6 +8,8 @@ import os.path
 import re
 import datetime as date
 
+year = date.date.today().year
+
 def basic_theory(doc, plan, data):
 
 	# Формирование стиля всего документа
@@ -126,8 +128,6 @@ def create_file_doc(tngc:list, plan:list, data:list):
 
 		search = [search_theme, search_name, search_group, search_colledge, s_year]
 
-		year = date.date.today().year
-
 		tngc.append(year)
 		
 		document = Document('template.docx')
@@ -202,7 +202,7 @@ def create_file_doc(tngc:list, plan:list, data:list):
 			doc.paragraphs[l-1].runs[0].add_break()
 
 		# Год по центру
-		paragraph = doc.add_paragraph('2024')
+		paragraph = doc.add_paragraph(str(year), 'г.')
 		p_fmt = paragraph.paragraph_format
 		p_fmt.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
