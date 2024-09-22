@@ -103,20 +103,6 @@ def replace_text_in_paragraph(paragraph, search, replace):
 
 def create_file_doc(tngc:list, plan:list, data:list):
 
-	# Чтение файлов переноса
-	# t = open('tngc.txt', 'r')
-	# tngc = [line.strip() for line in t]
-	# t.close()
-	# p = open('plan.txt', 'r')
-	# plan = [line.strip() for line in p]
-	# p.close()
-	# d = open('data.txt', 'r')
-	# data = [line.strip() for line in d]
-	# d.close()
-
-	# Удаление пустых строк в data
-	# data.remove('')
-
 	if os.path.exists('template.docx'):
 
 		search_theme = '{{theme}}'

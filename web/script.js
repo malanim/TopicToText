@@ -1,6 +1,6 @@
 $(function(){
 
-    eel.expose(say);               // Expose this function to Python
+    eel.expose(say);
     function say(text) {
         $('#status').val(text);
     }
@@ -9,19 +9,14 @@ $(function(){
     function alert_msg(text) {
         alert(text)
     }
-    // say_hello_js("Javascript World!");
 
-//     eel.get_text("connected!");  // Call a Python function
+//     eel.get_text("connected!");
     
     $("#btn").click(function(){
-
         eel.get_text($("#theme").val(), $("#name").val(), $("#group").val(), $("#colledge").val());
         $('#theme').val('');
         // $('#name').val('');
         // $('#group').val('');
         // $('#colledge').val('');
-
-        // $('#status').val('Successfully!');
-
     });
 }); 
