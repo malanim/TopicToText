@@ -21,7 +21,8 @@ def get_text(theme, name, group, colledge):
                         info = 'the function has completed its work'
                 else:
                         info = 'the function did not complete its work'
-                        exit_code = codes.error(10)
+                        exit_code = codes.error(11)
+                        print('все норм')
                         eel.alert_msg('Вводимые значения не должны быть пустыми')
                 out.line(info + ' | exit code: ' + str(exit_code), 'info')
                 print('---------------------------------------------------------------------')
