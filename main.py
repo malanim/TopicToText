@@ -128,4 +128,4 @@ def main():
                 exit_code = 7
                 return exit_code
 
-eel.start("main.html", size=(700, 700))
+eel.start("main.html", size=(700, 700), port=0)
