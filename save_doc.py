@@ -137,7 +137,6 @@ def create_file_doc(tngc:list, plan:list, data:list):
 					if search[i] in p.text:
 						paragraph = p
 						p = replace_text_in_paragraph(paragraph, str(search[i]), str(tngc[i]))
-						print('объект', str(i), 'заменен')
 		document = basic_theory(document, plan, data)
 
 		document.save('output.docx')
