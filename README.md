@@ -97,6 +97,5 @@ Google Chrome версии 130.0 и выше
 
 dependencies (libraries used):
 eel,
-colorama,
 g4f,
 python-docx.
