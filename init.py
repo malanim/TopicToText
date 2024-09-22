@@ -21,6 +21,11 @@ def get_theme(tngc:list)->str:
     theme = tngc[0]
     return theme
 
+def topic_check(theme:str)->str:
+    result = ask('Это выражение имеет смысл: "' + theme + '"? Ответь "Да" если смысл есть, или "Нет" если смысла нет')
+    result_normalizade = re.sub('[^А-Яа-я]', '', result)
+    return result_normalizade
+
 def plan_formation(theme:str)->str:
     pstr = ask('Мне нужен небольшой строгий план-содержание из 10 пунктов без лишних предисловий и выводов для курсовой работы на тему: ' + theme)
     return pstr

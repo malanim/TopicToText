@@ -24,6 +24,7 @@ def get_text(theme, name, group, colledge):
                         exit_code = codes.error(10)
                         eel.alert_msg('Вводимые значения не должны быть пустыми')
                 out.line(info + ' | exit code: ' + str(exit_code), 'info')
+                print('---------------------------------------------------------------------')
         except:
                 codes.error(0)
 
@@ -37,9 +38,16 @@ def main():
                 except:
                         exit_code = 1
                         return codes.error(1)
-                codes.info(2)
                 try:
-                        pstr = init.plan_formation(theme)
+                        if ('Да' in init.topic_check(theme))or('да' in init.topic_check(theme)):
+                                meaning = True
+                                codes.info(2)
+                                pstr = init.plan_formation(theme)
+                        else:
+                                meaning = False
+                                pstr = ' Ошибка генерации текста, проверьте правильность набранной темы.'
+                                exit_code = codes.error(11)
+                                codes.error(2)
                 except:
                         pstr = ' Ошибка генерации текста, проверьте свое подключение к интернету.'
                         exit_code = codes.error(3)
@@ -57,12 +65,20 @@ def main():
                         i=1
                         for item in plan:
                                 try:
-                                        data_item = init.item_process(item, theme)
+                                        if meaning == True:
+                                                data_item = init.item_process(item, theme)
+                                        else:
+                                                data_item = 'Ошибка генерации текста. Проверьте правильность набранной темы.'
+                                                codes.error(2)
 
                                         out.line('data item #' + str(i) + ' updating..', 'info')
                                         eel.say('item processing... data item #' + str(i) + ' updating..')
 
-                                        data_item_update = init.item_updating(data_item)
+                                        if meaning == True:
+                                                data_item_update = init.item_updating(data_item)
+                                        else:
+                                                data_item_update = data_item
+                                                codes.error(2)
                                         data_list.append(data_item_update)
 
                                         out.line('data item continue: ' + str(i) + ' / ' + str(l), 'info')
@@ -99,30 +115,32 @@ def main():
 class codes():
         def error(number:int)->int:
                 error_codes_text_list = [
-                        'unknown button error',
-                        'topic not found',
-                        'text generation error',
-                        'the plan could not be formed',
-                        'the plan could not be normalized',
-                        'nonefailed to generate last item',
-                        'None',
-                        'failed to generate document',
-                        'unable to create configuration files',
-                        'unknown error',
-                        'input values ​​must not be empty'
+                        'unknown button error', # 0
+                        'topic not found', # 1
+                        'text generation error', # 2
+                        'the plan could not be formed', # 3
+                        'the plan could not be normalized', # 4
+                        'nonefailed to generate last item', # 5
+                        'None', # 6
+                        'failed to generate document', # 7
+                        'unable to create configuration files', # 8
+                        'unknown error', # 9
+                        'input values ​​must not be empty', # 10
+                        'unable to generate text on the entered topic' # 11
                 ]
                 error_exit_codes_list = [
-                        1000,
-                        1,
-                        50,
-                        2,
-                        3,
-                        5,
-                        4,
-                        6,
-                        8,
-                        7000,
-                        1010
+                        1000, # 0
+                        1, # 1
+                        50, # 2
+                        2, # 3
+                        3, # 4
+                        5, # 5
+                        4, # 6
+                        6, # 7
+                        8, # 8
+                        7000, # 9
+                        1010, # 10
+                        5010 # 11
                 ]
                 text = error_codes_text_list[number]
                 error_code = error_exit_codes_list[number]
