@@ -10,14 +10,19 @@ eel.init("web")
 @eel.expose
 def get_text(theme, name, group, colledge):
         try:
-                t = open('tngc.txt', 'w')
-                t.write(theme + '\n' + name + '\n' + group + '\n' + colledge)
-                t.close()
+                if ((theme!='')and(name!='')and(group!='')and(colledge!='')):
+                        t = open('tngc.txt', 'w')
+                        t.write(theme + '\n' + name + '\n' + group + '\n' + colledge)
+                        t.close()
 
-                codes.info(0)
+                        codes.info(0)
 
-                exit_code = main()
-                info = 'the function has completed its work'
+                        exit_code = main()
+                        info = 'the function has completed its work'
+                else:
+                        info = 'the function did not complete its work'
+                        exit_code = codes.error(10)
+                        eel.alert_msg('Вводимые значения не должны быть пустыми')
                 out.line(info + ' | exit code: ' + str(exit_code), 'info')
         except:
                 codes.error(0)
@@ -65,7 +70,7 @@ def main():
                                 except:
                                         data_item = ' Ошибка генерации текста, проверьте свое подключение к интернету.'
                                         data_list.append(data_item)
-                                        
+
                                         eel.say('nonefailed to generate item #' + str(i))
                                         exit_code = exit_code + codes.error(2)
                                         codes.error(5)
@@ -103,7 +108,8 @@ class codes():
                         'None',
                         'failed to generate document',
                         'unable to create configuration files',
-                        'unknown error'
+                        'unknown error',
+                        'input values ​​must not be empty'
                 ]
                 error_exit_codes_list = [
                         1000,
@@ -115,14 +121,15 @@ class codes():
                         4,
                         6,
                         8,
-                        7000
+                        7000,
+                        1010
                 ]
                 text = error_codes_text_list[number]
                 error_code = error_exit_codes_list[number]
                 out.line(text, 'error')
                 eel.say(text)
                 return error_code
-        def info(number:int):
+        def info(number:int=9):
                 info_codes_text_list = [
                         'connect!',
                         'topic request...',
@@ -132,7 +139,9 @@ class codes():
                         'creating docx file...',
                         'continue!',
                         'creating config files...',
-                        'configuration files have been created'
+                        'configuration files have been created',
+                        'the "theme" field is empty',
+                        'unknown info'
                 ]
                 text = info_codes_text_list[number]
                 out.line(text, 'info')
