@@ -79,7 +79,7 @@ def main():
                         for item in plan:
                                 try:
                                         data_item = init.item_process(item, theme)
-                                        inf = 'data item #' + str(i) + 'updating..'
+                                        inf = 'data item #' + str(i) + ' updating..'
                                         eelinf = 'item processing... data item #' + str(i) + ' updating..'
                                         out.line(inf, 'info')
                                         eel.say(eelinf)
