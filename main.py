@@ -19,10 +19,10 @@ def get_text(theme, name, group, colledge):
 
                         exit_code = main()
                         info = 'the function has completed its work'
+                        if exit_code == 52: eel.alert_msg('Ошибка генерации текста.\nПроверьте свое подключение к интернету.')
                 else:
                         info = 'the function did not complete its work'
                         exit_code = codes.error(11)
-                        print('все норм')
                         eel.alert_msg('Вводимые значения не должны быть пустыми')
                 out.line(info + ' | exit code: ' + str(exit_code), 'info')
                 print('---------------------------------------------------------------------')
@@ -52,7 +52,6 @@ def main():
                 except:
                         pstr = ' Ошибка генерации текста, проверьте свое подключение к интернету.'
                         exit_code = codes.error(3)
-                        eel.alert_msg('Ошибка генерации текста.\nПроверьте свое подключение к интернету.')
                         codes.error(2)
                 codes.info(3)
                 try:
@@ -66,16 +65,16 @@ def main():
                         i=1
                         for item in plan:
                                 try:
-                                        if meaning == True:
+                                        if meaning != False:
                                                 data_item = init.item_process(item, theme)
                                         else:
                                                 data_item = 'Ошибка генерации текста. Проверьте правильность набранной темы.'
                                                 codes.error(2)
 
                                         out.line('data item #' + str(i) + ' updating..', 'info')
-                                        eel.say('item processing... data item #' + str(i) + ' updating..')
+                                        eel.say('обработка элемента... сейчас #' + str(i) + ' двойной анализ..')
 
-                                        if meaning == True:
+                                        if meaning != False:
                                                 data_item_update = init.item_updating(data_item)
                                         else:
                                                 data_item_update = data_item
@@ -83,12 +82,12 @@ def main():
                                         data_list.append(data_item_update)
 
                                         out.line('data item continue: ' + str(i) + ' / ' + str(l), 'info')
-                                        eel.say('item processing... data item continue: ' + str(i) + ' / ' + str(l))
+                                        eel.say('обработка элемента... завершено: ' + str(i) + ' / ' + str(l))
                                 except:
-                                        data_item = ' Ошибка генерации текста, проверьте свое подключение к интернету.'
+                                        data_item = ' Ошибка генерации текста.'
                                         data_list.append(data_item)
 
-                                        eel.say('nonefailed to generate item #' + str(i))
+                                        eel.say('невозможно сгенерировать элемент #' + str(i))
                                         exit_code = exit_code + codes.error(2)
                                         codes.error(5)
                                 i=i+1
@@ -115,7 +114,7 @@ def main():
 
 class codes():
         def error(number:int)->int:
-                error_codes_text_list = [
+                error_codes_text_list_en = [
                         'unknown button error', # 0
                         'topic not found', # 1
                         'text generation error', # 2
@@ -128,6 +127,20 @@ class codes():
                         'unknown error', # 9
                         'input values ​​must not be empty', # 10
                         'unable to generate text on the entered topic' # 11
+                ]
+                error_codes_text_list_ru = [
+                        'неизвестная ошибка кнопки', # 0
+                        'тема не найдена', # 1
+                        'ошибка генерации текста', # 2
+                        'план не может быть сформирован', # 3
+                        'план не может быть нормализован', # 4
+                        'не удалось сгенерировать последний элемент', # 5
+                        'None', # 6
+                        'не удалось сгенерировать документ', # 7
+                        'не удалось создать файлы конфигурации', # 8
+                        'неизвестная ошибка', # 9
+                        'входные значения не должны быть пустыми', # 10
+                        'не удалось сгенерировать текст по введенной теме' # 11
                 ]
                 error_exit_codes_list = [
                         1000, # 0
@@ -143,27 +156,42 @@ class codes():
                         1010, # 10
                         5010 # 11
                 ]
-                text = error_codes_text_list[number]
+                text_en = error_codes_text_list_en[number]
+                text_ru = error_codes_text_list_ru[number]
                 error_code = error_exit_codes_list[number]
-                out.line(text, 'error')
-                eel.say(text)
+                out.line(text_en, 'error')
+                eel.say(text_ru)
                 return error_code
         def info(number:int=9):
-                info_codes_text_list = [
-                        'connect!',
-                        'topic request...',
-                        'plan formation...',
-                        'plan normalisation...',
-                        'item processing...',
-                        'creating docx file...',
-                        'continue!',
-                        'creating config files...',
-                        'configuration files have been created',
-                        'the "theme" field is empty',
-                        'unknown info'
+                info_codes_text_list_en = [
+                        'connect!', # 0
+                        'topic request...', # 1
+                        'plan formation...', # 2
+                        'plan normalisation...', # 3
+                        'item processing...', # 4
+                        'creating docx file...', # 5
+                        'continue!', # 6
+                        'creating config files...', # 7
+                        'configuration files have been created', # 8
+                        'the "theme" field is empty', # 9
+                        'unknown info' # 10
                 ]
-                text = info_codes_text_list[number]
-                out.line(text, 'info')
-                eel.say(text)
+                info_codes_text_list_ru = [ 
+                        'подключено!', # 0 
+                        'запрос темы...', # 1 
+                        'формирование плана...', # 2 
+                        'нормализация плана...', # 3 
+                        'обработка элемента...', # 4 
+                        'создание файла docx...', # 5 
+                        'завершено!', # 6 
+                        'создание файлов конфигурации...', # 7 
+                        'файлы конфигурации созданы', # 8 
+                        'поле темы пусто', # 9 
+                        'неизвестная информация'#10
+                ]
+                text_en = info_codes_text_list_en[number]
+                text_ru = info_codes_text_list_ru[number]
+                out.line(text_en, 'info')
+                eel.say(text_ru)
 
 eel.start("main.html", size=(700, 700), port=0)
