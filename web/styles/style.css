@@ -30,7 +30,7 @@ body {
 .container {
   display: grid;
   grid-template-columns: auto 30em auto;
-  grid-template-rows: 1em auto 8px;
+  grid-template-rows: 1em auto 6px;
   column-gap: 10px;
   row-gap: 1em;
   /* border: 2px solid blue; */
@@ -50,6 +50,48 @@ body {
 
 a {
   color: rgb(92, 248, 248);
+}
+
+a:hover {
+  color: rgb(59, 158, 158);
+  text-decoration: none;
+}
+
+a:active {
+  color: rgb(44, 124, 124);
+}
+
+.button-slyled_link {
+  border: 0;
+  font-size: 1rem;
+  text-align: center;
+  color: rgb(92, 248, 248);
+  border-radius: 10px;
+  background-color: rgb(0 0 0 / 0%);
+}
+
+.button-slyled_link:hover {
+  color: rgb(59, 158, 158);
+}
+
+.button-slyled_link:active {
+  color: rgb(44, 124, 124);
+}
+
+.ninja_link {
+  color: white;
+  cursor: default;
+}
+
+.ninja_link:hover {
+  color: white;
+  text-decoration: none;
+  cursor: default;
+}
+
+.ninja_link:active {
+  color: white;
+  cursor: default;
 }
 
 .text-field {
