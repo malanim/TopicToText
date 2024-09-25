@@ -1,9 +1,8 @@
 create-config.py
 output.docx
-plan.txt
-tngc.txt
 __pycache__/init.cpython-312.pyc
 __pycache__/out.cpython-312.pyc
 __pycache__/save_doc.cpython-312.pyc
 __pycache__/
 __pycache__
+create_temp.py

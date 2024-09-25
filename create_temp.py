@@ -14,14 +14,14 @@ print(plan)
 
 # Создание временной директории
 # dir_path = tempfile.mkdtemp(prefix = 'ttt_temp_')
-dir_path = tempfile.gettempdir()
-print(dir_path)
+temp_dir_path = tempfile.gettempdir()
+print(temp_dir_path)
 
 # Создание переменной str со значением списка и разделением через '//'
 input_text = '//'.join(plan)
 
 # Создание файла в временной директории
-temp_file_path_input = os.path.join(dir_path, "temp_file.tmp")
+temp_file_path_input = os.path.join(temp_dir_path, "temp_file.tmp")
 with open(temp_file_path_input, 'w') as f:
     f.write(input_text)
 

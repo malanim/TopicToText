@@ -1,21 +1,36 @@
 import eel
-import colorama
 import init
 import save_doc
 import out
-# import tempfile
-# import os
+import tempfile
+import os
 
-colorama.init()
 eel.init("web")
+temp_dir_path = tempfile.gettempdir()
+inf_tmp = os.path.join(temp_dir_path, 'inf.tmp')
+tngc_tmp = os.path.join(temp_dir_path, 'tngc.tmp')
+plan_tmp = os.path.join(temp_dir_path, 'plan.tmp')
+data_tmp = os.path.join(temp_dir_path, 'data.tmp')
+
+if os.path.exists(inf_tmp) == False:
+        with open(inf_tmp, 'w') as f:
+                f.write('750')
+if os.path.exists(tngc_tmp) == False:
+        with open(tngc_tmp, 'w') as f:
+                f.write('theme//name//group//college')
+if os.path.exists(plan_tmp) == False:
+        with open(plan_tmp, 'w') as f:
+                f.write('first point//second point//third point')
+if os.path.exists(data_tmp) == False:
+        with open(data_tmp, 'w') as f:
+                f.write('first\ndata element//second\ndata element//third\ndata element')
 
 @eel.expose
 def get_text(theme, name, group, colledge):
         try:
                 if ((theme!='')and(name!='')and(group!='')and(colledge!='')):
-                        t = open('tngc.txt', 'w')
-                        t.write(theme + '\n' + name + '\n' + group + '\n' + colledge)
-                        t.close()
+                        with open(tngc_tmp, 'w') as f:
+                                f.write(theme + '//' + name + '//' + group + '//' + colledge)
 
                         codes.info(0)
 
@@ -30,6 +45,17 @@ def get_text(theme, name, group, colledge):
                 print('---------------------------------------------------------------------')
         except:
                 codes.error(0)
+
+@eel.expose
+def delete_temp():
+        try:
+                os.remove(inf_tmp)
+                os.remove(tngc_tmp)
+                os.remove(plan_tmp)
+                os.remove(data_tmp)
+                codes.info(11)
+        except:
+                codes.error(12)
 
 def main():
         try:
@@ -103,9 +129,10 @@ def main():
                         return codes.error(7)
                 codes.info(7)
                 try:
-                        plan_txt = open('plan.txt', 'w')
-                        plan_txt.write('//'.join(plan))
-                        plan_txt.close()
+                        with open(plan_tmp, 'w') as p:
+                                p.write('//'.join(plan))
+                        with open(data_tmp, 'w') as p:
+                                p.write('//'.join(data_list))
                         codes.info(8)
                         codes.info(6)
                         return exit_code
@@ -128,7 +155,8 @@ class codes():
                         'unable to create configuration files', # 8
                         'unknown error', # 9
                         'input values ​​must not be empty', # 10
-                        'unable to generate text on the entered topic' # 11
+                        'unable to generate text on the entered topic', # 11
+                        'unable to delete temporary files' # 12
                 ]
                 error_codes_text_list_ru = [
                         'неизвестная ошибка кнопки', # 0
@@ -142,7 +170,8 @@ class codes():
                         'не удалось создать файлы конфигурации', # 8
                         'неизвестная ошибка', # 9
                         'входные значения не должны быть пустыми', # 10
-                        'не удалось сгенерировать текст по введенной теме' # 11
+                        'не удалось сгенерировать текст по введенной теме', # 11
+                        'невозможно удалить временные файлы' # 12
                 ]
                 error_exit_codes_list = [
                         1000, # 0
@@ -156,7 +185,8 @@ class codes():
                         8, # 8
                         7000, # 9
                         1010, # 10
-                        5010 # 11
+                        5010, # 11
+                        9 # 12
                 ]
                 text_en = error_codes_text_list_en[number]
                 text_ru = error_codes_text_list_ru[number]
@@ -176,7 +206,8 @@ class codes():
                         'creating config files...', # 7
                         'configuration files have been created', # 8
                         'the "theme" field is empty', # 9
-                        'unknown info' # 10
+                        'unknown info', # 10
+                        'temporary files deleted successfully' # 11
                 ]
                 info_codes_text_list_ru = [ 
                         'подключено!', # 0 
@@ -189,7 +220,8 @@ class codes():
                         'создание файлов конфигурации...', # 7 
                         'файлы конфигурации созданы', # 8 
                         'поле темы пусто', # 9 
-                        'неизвестная информация'#10
+                        'неизвестная информация', # 10
+                        'временные файлы удалены успешно' # 11
                 ]
                 text_en = info_codes_text_list_en[number]
                 text_ru = info_codes_text_list_ru[number]

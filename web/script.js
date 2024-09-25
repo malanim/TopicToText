@@ -18,5 +18,19 @@ $(function(){
         // $('#name').val('');
         // $('#group').val('');
         // $('#colledge').val('');
+        $(this).addClass('not_clicable');
+        setTimeout(() => {
+            $(this).removeClass('not_clicable');
+        }, 500);
     });
-}); 
+
+    $("#del_btn").click(function(){
+        eel.delete_temp();
+        $(this).removeClass('button-slyled_link');
+        $(this).addClass('button-slyled_link_not_clicable');
+        setTimeout(() => {
+            $(this).removeClass('button-slyled_link_not_clicable');
+            $(this).addClass('button-slyled_link');
+        }, 2000);
+    });
+});

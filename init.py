@@ -1,6 +1,11 @@
 from g4f.client import Client
 import re
 import out
+import tempfile
+import os
+
+temp_dir_path = tempfile.gettempdir()
+tngc_tmp = os.path.join(temp_dir_path, 'tngc.tmp')
 
 def ask(prompt:str)->str:
     client = Client()
@@ -12,9 +17,8 @@ def ask(prompt:str)->str:
     return text
 
 def read_files()->list:
-    tn = open('tngc.txt', 'r')
-    tngc = [line.strip() for line in tn]
-    tn.close()
+    with open(tngc_tmp, 'r') as t:
+        tngc = t.read().split('//')
     return tngc
 
 def get_theme(tngc:list)->str:
@@ -44,10 +48,10 @@ def plan_normalisation(pstr:str)->list:
 
 def item_process(item:str, theme:str)->str:
     data_item = ask('Помоги написать '+ item + ', связанное с темой: ' + theme + '; хочу получить только текст длиной от 100 до 1000 символов')
-    data_item_normal = re.sub('[^А-Яа-я \n:,.]', '', data_item)
+    data_item_normal = re.sub('[^А-Яа-я0-9 \n:,.]', '', data_item)
     return data_item_normal
 
 def item_updating(item:str)->str:
     data_item_update = ask('Исправь ошибки среди текста, если они есть, и представь информацию более понятно или развернуто: "' + item + '"; хочу получить только получившийся текст')
-    data_item_normal = re.sub('[^А-Яа-я \n:;,.]', '', data_item_update)
-    return data_item_normal
+    # data_item_normal = re.sub('[^А-Яа-я \n:;,.]', '', data_item_update)
+    return data_item_update
