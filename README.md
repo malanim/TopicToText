@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # TopicToText-Pro
+=======
+# TopicToText-Light
+>>>>>>> 1c9f612 (Update README.md)
 
 Generating reports using the g4f library
 
