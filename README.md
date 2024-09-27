@@ -1,4 +1,4 @@
-# TopicToText
+# TopicToText-Light
 
 Generating reports using the g4f library
 
